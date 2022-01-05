@@ -25,11 +25,9 @@ Image
 Size
 */
 
-
 /* 
 Class section:
 */
-
 
 // class Student {
 //     constructor(){
@@ -69,26 +67,27 @@ class Student {
 */
 
 class Student {
-    constructor(firstName, lastName, phoneNumber, grade){
-        this.firtName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.grade = grade;
-    }
+  constructor(firstName, lastName, phoneNumber, grade) {
+    this.firtName = firstName;
+    this.lastName = lastName;
+    this.phoneNumber = phoneNumber;
+    this.grade = grade;
+  }
 
-    introduce(){
-        console.log(`${this.firtName} ${this.lastName} can be reached at ${this.phoneNumber}`);
-    }
+  introduce() {
+    console.log(
+      `${this.firtName} ${this.lastName} can be reached at ${this.phoneNumber}`
+    );
+  }
 }
 
 let student = new Student();
-student.firtName = 'Tommy';
-student.lastName = 'Smith';
+student.firtName = "Tommy";
+student.lastName = "Smith";
 
-
-let student1 = new Student('Tom', 'Sawyer', '6515296671', 'A');
+let student1 = new Student("Tom", "Sawyer", "6515296671", "A");
 // Tom Sawyer can be reached at 6515296671 --> this should print in the console
-let student2 = new Student('Messa', 'Vang', '6518081986', 'A');
+let student2 = new Student("Messa", "Vang", "6518081986", "A");
 // Messa Vang can be reached at 6518081986 --> this should print in the console
 
 student1.introduce();
@@ -137,4 +136,151 @@ let student2 = new Student('Messa', 'Vang', '6518081986', 'A');
 
 student1.introduce();
 student2.introduce();
+*/
+
+/* Inheritance section */
+class NotificationSender{
+    constructor(status){
+        this.status = status;
+    }
+
+
+    // this was moved from the class PromotionSender section
+    sendNotification(notification) { 
+    console.log("sending: " + notification);
+  }
+
+
+  // this was moved from the class PromotionSender section
+  findUsersWithStatus(status) {
+    // we want users who meet a specific status, i.e. silver, bronze, gold, etc
+    let users = getUsers(status);
+    return users;
+  }
+}
+
+
+class PromotionSender extends NotificationSender {
+  constructor(status) {
+    super(status);
+  }
+
+  calculateDiscount(status) {
+    // to calculate the discount for the promotions we are sending out in the email
+    if (status === "Gold") {
+      return 0.3;
+    } else if (status === "Silver") {
+      return 0.15;
+    }
+    return 0;
+  }
+}
+
+class CollectionsSender extends NotificationSender {
+  constructor(status) {
+    super(status);
+  }
+
+    // remove these two completely
+        //   sendNotification(notification) {
+        //     console.log("Sending: " + notification);
+        //   }
+
+        //   findUsersWithStatus(status) {
+        //     let users = getUsers(status);
+        //     return users;
+        //   }
+
+  calculateFee(status) {
+    if (status === "OVERDUE") {
+      return 10;
+    } else if (status === "DELIQUENT") {
+      return 25;
+    }
+    return 5;
+  }
+}
+
+
+
+let collectionsSender = new CollectionsSender ("OVERDUE");
+collectionsSender.sendNotification('this is a test collections notification.');
+
+/*
+- so when we start to notice a pattern like that where we have multiple classes with a lot of the same code 
+- then only a little bit of a difference or some difference at all like the calculate discount and calculate fee 
+- we can extract that common code into a parent class 
+- then inherit that into our children classes 
+- that provides us the ability to put the code in one place 
+    - we only have to change it in one place which makes maintainability a lot easier 
+- see line:  142 or below
+
+class NotificationSender{
+    constructor(status){
+        this.status = status;
+    }
+}
+
+class NotificationSender{
+    constructor(status){
+        this.status = status;
+    }
+
+
+    // this was moved from the class PromotionSender section
+    sendNotification(notification) { 
+    console.log("sending: " + notification);
+  }
+
+
+  // this was moved from the class PromotionSender section
+  findUsersWithStatus(status) {
+    // we want users who meet a specific status, i.e. silver, bronze, gold, etc
+    let users = getUsers(status);
+    return users;
+  }
+}
+
+
+class PromotionSender extends NotificationSender {
+  constructor() {
+    super(status);
+  }
+
+  calculateDiscount(status) {
+    // to calculate the discount for the promotions we are sending out in the email
+    if (status === "Gold") {
+      return 0.3;
+    } else if (status === "Silver") {
+      return 0.15;
+    }
+    return 0;
+  }
+}
+
+class CollectionsSender extends NotificationSender {
+  constructor() {
+    super(status);
+  }
+
+    // remove these two completely
+        //   sendNotification(notification) {
+        //     console.log("Sending: " + notification);
+        //   }
+
+        //   findUsersWithStatus(status) {
+        //     let users = getUsers(status);
+        //     return users;
+        //   }
+
+  calculateFee(status) {
+    if (status === "OVERDUE") {
+      return 10;
+    } else if (status === "DELIQUENT") {
+      return 25;
+    }
+    return 5;
+  }
+}
+
 */
