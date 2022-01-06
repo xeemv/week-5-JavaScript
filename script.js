@@ -282,3 +282,37 @@ class CollectionsSender extends NotificationSender {
 
 /* Handling Exceptions */
 
+try{
+  list.push('hello');
+} catch(err) {
+  console.log(err);
+}
+
+console.log('goodbye');
+
+
+/*
+code line 285 -286 
+list.push('hello');
+console.log(err);
+
+= Uncaught ReferenceError: list is not defined
+
+- we can see that goodbye never gets logged in the console because the error was thrown trying to push to an array that doesn't exist right 
+  - so in our line of code right here we haven't declared this array 
+	- yet we try to push hello to this array that doesn't exist because of that an error is thrown an exception is thrown and we never run the line after it 
+    - meaning our program crashed and so it just stopped running which is not what we want to happen
+
+- to fix the error using try and catch blocks
+  - see new code on line 285-291 or below
+
+
+  try{
+  list.push('hello');
+} catch(err) {
+  console.log(err);
+}
+
+console.log('goodbye');
+
+*/ 
