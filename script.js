@@ -221,12 +221,6 @@ class NotificationSender{
     }
 }
 
-class NotificationSender{
-    constructor(status){
-        this.status = status;
-    }
-
-
     // this was moved from the class PromotionSender section
     sendNotification(notification) { 
     console.log("sending: " + notification);
@@ -243,7 +237,7 @@ class NotificationSender{
 
 
 class PromotionSender extends NotificationSender {
-  constructor() {
+  constructor(status) {
     super(status);
   }
 
@@ -259,7 +253,7 @@ class PromotionSender extends NotificationSender {
 }
 
 class CollectionsSender extends NotificationSender {
-  constructor() {
+  constructor(status) {
     super(status);
   }
 
@@ -284,3 +278,7 @@ class CollectionsSender extends NotificationSender {
 }
 
 */
+
+
+/* Handling Exceptions */
+
