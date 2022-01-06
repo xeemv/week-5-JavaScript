@@ -304,10 +304,15 @@ console.log(err);
     - meaning our program crashed and so it just stopped running which is not what we want to happen
 
 - to fix the error using try and catch blocks
-  - see new code on line 285-291 or below
+  - see old code below:
+  list.push('hello');
+   console.log('goodbye');
 
 
-  try{
+
+
+- see new code on line 285-291 or below
+try{
   list.push('hello');
 } catch(err) {
   console.log(err);
@@ -315,4 +320,9 @@ console.log(err);
 
 console.log('goodbye');
 
+// this is how it will print out in the console:
+   ReferenceError: list is not defined
+    <anonymous> http://127.0.0.1:5500/script.js:286
+script.js:288:11
+goodbye
 */ 
